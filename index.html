@@ -104,4 +104,5 @@ document.addEventListener('click',e=>{const btn=e.target.closest('.shop-add');if
 $('checkoutForm').onsubmit=async e=>{e.preventDefault();const message=$('cartMessage');message.style.color='#a33';message.textContent='إرسال الطلبات غير مفعّل بعد: يلزم توصيل Supabase لتسجيل الطلب بأمان. لم يتم إرسال الطلب أو حفظه لدى المتجر.';};
 load();window.addEventListener('focus',load);
 })();
-</script></body></html>
+</script><script src="store.js" defer></script>
+</body></html>
