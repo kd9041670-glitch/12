@@ -51,6 +51,15 @@
 <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#"><span class="logo" style="width:32px;height:32px;border-radius:11px;font-size:17px">و</span><span>وصل.</span></a><span>© <span id="year"></span> وصل — نموذج واجهة تجريبي.</span><span>صُنع بعناية لتجربة عربية واضحة.</span></div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
+// فتح لوحة الإدارة بعد ثلاث ضغطات متتالية على شعار وصل
+let logoClicks=0,logoReset;
+document.querySelectorAll('a.brand').forEach(logo=>logo.addEventListener('click',event=>{
+  event.preventDefault();
+  logoClicks++;
+  clearTimeout(logoReset);
+  if(logoClicks>=3){logoClicks=0;window.location.href='dashboard.html';return}
+  logoReset=setTimeout(()=>{logoClicks=0},1800);
+}));
 const search=document.getElementById('searchOrder'),filter=document.getElementById('filter'),rows=[...document.querySelectorAll('#orders tr')],empty=document.getElementById('empty'),count=document.getElementById('count');
 function update(){const q=search.value.trim().toLowerCase();let visible=0;rows.forEach(r=>{const ok=r.innerText.toLowerCase().includes(q)&&(filter.value==='all'||r.dataset.status===filter.value);r.style.display=ok?'':'none';if(ok)visible++});empty.style.display=visible?'none':'block';count.textContent=visible+' طلبات'}search.addEventListener('input',update);filter.addEventListener('change',update);document.getElementById('year').textContent=new Date().getFullYear();const toast=document.getElementById('toast');document.getElementById('contactBtn').addEventListener('click',()=>{toast.textContent='هذه نسخة تجريبية؛ اربط زر التواصل بقناة مشروعك عند النشر.';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3600)});
 </script>
