@@ -1,16 +1,28 @@
-# Wasl Delivery | وصل
+# وصل | Wasl Delivery
 
-واجهة عربية RTL متجاوبة لخدمات التوصيل. المستودع الحالي يتضمن صفحة HTML مستقلة في `index.html` تعمل دون تثبيت حزم، وبها جدول تجريبي قابل للبحث والتصفية.
+متجر عربي (RTL) مع لوحة إدارة على `/dashboard` (الوصول الخفي: ثلاث نقرات على شعار "وصل" خلال ثانيتين). الحماية الفعلية عبر Supabase Auth + RLS + جدول `wasl_admins`.
 
-## النشر
-- يُمكن نشر الصفحة الثابتة عبر GitHub Pages من خلال سير العمل في `.github/workflows/pages.yml`.
-- افتح Settings → Pages في المستودع، واختر GitHub Actions كمصدر النشر إن لم يكن مفعّلًا تلقائيًا.
-- رابط لوحة الإدارة المنشورة على Lovable متاح حاليًا من: https://wasl-delivery.lovable.app
+- يستخدم مشروع Supabase موجود مسبقًا بمفتاح publishable فقط (لا service_role ولا أسرار).
+- الطلبات عبر RPC `wasl_place_order` ويحسب الخادم المجموع.
 
-## Supabase
-المخطط الأولي محفوظ في `supabase/migrations/20261012000000_wasl_initial_delivery_schema.sql`.
-إعدادات الواجهة الاختيارية في `.env.example`؛ لا تضف مفاتيح الخدمة السرية إلى GitHub.
-المصادقة وربط الواجهة بالقاعدة يحتاجان تكاملًا داخل التطبيق واختبارًا عمليًا؛ وجود المخطط وحده لا يعني أن الواجهة الحالية متصلة بقاعدة البيانات.
+## التصدير/المزامنة إلى GitHub (`kd9041670-glitch/12`)
 
-## بيانات العرض
-الأرقام والطلبات داخل `index.html` تجريبية وليست طلبات حقيقية.
+> لا تُرفع الملفات تلقائيًا. نفّذ الخطوات بعد التأكيد فقط، وانتبه: الربط قد يستبدل محتوى المستودع.
+
+**الطريقة الموصى بها (من Lovable):**
+1. في محرر Lovable افتح **Connectors → GitHub** واربط حسابك.
+2. اختر إنشاء مستودع جديد، أو صدّر الملفات يدويًا إلى المستودع الموجود (انظر أدناه).
+
+**يدويًا إلى المستودع الموجود:**
+```bash
+git clone https://github.com/kd9041670-glitch/12.git wasl && cd wasl
+git checkout -b lovable-sync            # فرع منفصل لتجنّب استبدال الملفات
+# انسخ ملفات المشروع (بدون node_modules و dist و .git) إلى هذا المجلد
+git add . && git commit -m "Sync Wasl Delivery from Lovable"
+git push -u origin lovable-sync         # ثم افتح Pull Request وراجع قبل الدمج
+```
+
+## التشغيل محليًا
+```bash
+bun install && bun run dev
+```
