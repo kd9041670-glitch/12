@@ -1,6 +1,6 @@
 /* Wasl public storefront: Supabase REST API; publishable key only. */
 (()=>{'use strict';window.WASL_REMOTE_STORE=true;
-const URL_BASE='https://juqynlhmcyqygnfgyppr.supabase.co',KEY='sb_publishable_HBciQx-rh8m3QkH4E24Onw_UWqjxlZ1',headers={'apikey':KEY,'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1cXlubGhtY3lxeWduZmd5cHByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MjMwODgsImV4cCI6MjEwNzM5OTA4OH0.Z9e9JYRxeLrdBr0i3lxkPZrbcscRHPTq9zBBxULy6F0','Content-Type':'application/json'};
+const URL_BASE='https://juqynlhmcyqygnfgyppr.supabase.co',KEY='sb_publishable_HBciQx-rh8m3QkH4E24Onw_UWqjxlZ1',headers={'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1cXlubGhtY3lxeWduZmd5cHByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MjMwODgsImV4cCI6MjEwNzM5OTA4OH0.Z9e9JYRxeLrdBr0i3lxkPZrbcscRHPTq9zBBxULy6F0','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1cXlubGhtY3lxeWduZmd5cHByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MjMwODgsImV4cCI6MjEwNzM5OTA4OH0.Z9e9JYRxeLrdBr0i3lxkPZrbcscRHPTq9zBBxULy6F0','Content-Type':'application/json'};
 let products=[],cart=new Map();const $=id=>document.getElementById(id);
 async function api(path,options={}){const r=await fetch(URL_BASE+'/rest/v1/'+path,{...options,headers:{...headers,...options.headers}});const t=await r.text();if(!r.ok)throw Error(t.slice(0,300));return t?JSON.parse(t):null}
 function node(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
