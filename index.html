@@ -1,5 +1,27 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>وصل | Wasl Delivery</title></head>
-  <body><div id="root"></div><script type="module" src="/src/pages-main.tsx"></script></body>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>وصل | Wasl Delivery</title>
+  <style>body{margin:0;font-family:system-ui,sans-serif;background:#f8faf7;color:#173b2b}#boot-status{padding:3rem 1rem;text-align:center}#boot-error{white-space:pre-wrap;direction:ltr;text-align:left;max-width:760px;margin:1rem auto;color:#9b1c1c;font-size:13px}</style>
+</head>
+<body>
+  <div id="root"><div id="boot-status">جارٍ تحميل متجر وصل...</div></div>
+  <script>
+    window.addEventListener("error",function(e){
+      var el=document.getElementById("boot-status");
+      if(el) el.innerHTML='<strong>تعذّر تشغيل المتجر.</strong><p>يرجى إرسال الخطأ التالي للدعم:</p><pre id="boot-error"></pre>';
+      var pre=document.getElementById("boot-error");
+      if(pre) pre.textContent=e.message || 'Unknown script error';
+    });
+    window.addEventListener("unhandledrejection",function(e){
+      var el=document.getElementById("boot-status");
+      if(el) el.innerHTML='<strong>حدث خطأ أثناء تحميل المتجر.</strong><pre id="boot-error"></pre>';
+      var pre=document.getElementById("boot-error");
+      if(pre) pre.textContent=String(e.reason && (e.reason.stack||e.reason.message)||e.reason);
+    });
+  </script>
+  <script type="module" src="/src/pages-main.tsx"></script>
+</body>
 </html>
