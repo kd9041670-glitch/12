@@ -1,5 +1,5 @@
 /* Wasl public storefront: Supabase REST API; publishable key only. */
-(()=>{'use strict';
+(()=>{'use strict';window.WASL_REMOTE_STORE=true;
 const URL_BASE='https://juqynlhmcyqygnfgyppr.supabase.co',KEY='sb_publishable_HBciQx-rh8m3QkH4E24Onw_UWqjxlZ1',headers={'apikey':KEY,'Content-Type':'application/json'};
 let products=[],cart=new Map();const $=id=>document.getElementById(id);
 async function api(path,options={}){const r=await fetch(URL_BASE+'/rest/v1/'+path,{...options,headers:{...headers,...options.headers}});const t=await r.text();if(!r.ok)throw Error(t.slice(0,300));return t?JSON.parse(t):null}
